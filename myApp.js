@@ -1,14 +1,17 @@
 let express = require('express');
 let app = express();
-let absolutePath = __dirname + '/views/index.html'
+let indexAbsolutePath = __dirname + '/views/index.html'
+let assetsAbsolutePath = __dirname + '/public'
 
 console.log("Hello World")
 
 app.get('/',(req, res)=> {
 
-    res.sendFile(absolutePath)
+    res.sendFile(indexAbsolutePath)
 
 })
+
+app.use(express.static(assetsAbsolutePath))
 
 
 

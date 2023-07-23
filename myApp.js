@@ -10,10 +10,12 @@ app.use("/public", express.static(assetsAbsolutePath));
 
 // logger middleware function
 app.use((req,res,next )=> {
+    const currentDate = new Date().toString()
+    const currentTimeString = currentDate.match(/\d{2}:\d{2}:\d{2}/)[0];
     let requestMethod = req.method
     let requestPath = req.path
     let requestIP = req.ip
-    console.log(`${requestMethod} ${requestPath} - ${requestIP}`)
+    console.log(`${currentTimeString} ${requestMethod} ${requestPath} - ${requestIP}`)
     next()
 })
 
@@ -33,6 +35,18 @@ app.get('/json',(req, res) => {
     }
     res.json({
         "message": messageString
+    })
+})
+
+
+// chained a middle ware function and handler / controller
+app.get('/now', (req, res, next) => {
+    const currentTime = new Date().toString()
+    req.time = currentTime
+    next()
+}, (req, res) => {
+    res.json({
+        "time": req.time 
     })
 })
 

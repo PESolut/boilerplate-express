@@ -12,7 +12,12 @@ console.log("Hello World")
 app.get('/',(req, res)=> {
 
     res.sendFile(indexAbsolutePath)
+})
 
+app.get('/json',(req, res) => {
+    res.json({
+        "message": "Hello json"
+    })
 })
 
 

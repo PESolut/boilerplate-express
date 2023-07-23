@@ -1,4 +1,5 @@
 let express = require('express');
+let bodyParser = require('body-parser')
 let app = express();
 require('dotenv').config()
 
@@ -17,6 +18,9 @@ app.use((req,res,next )=> {
     let requestIP = req.ip
     console.log(`${currentTimeString} ${requestMethod} ${requestPath} - ${requestIP}`)
     next()
+})
+app.use((req,res,next) => {
+    bodyParser.urlencoded({ extended: false}).json()
 })
 
 console.log("Hello World")

@@ -10,7 +10,6 @@ let assetsAbsolutePath = __dirname + '/public'
 app.use("/public", express.static(assetsAbsolutePath));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 // logger middleware function
 app.use((req,res,next )=> {
     const currentDate = new Date().toString()
@@ -39,6 +38,12 @@ app.route('/name').get((req, res) => {
     })
 
 }).post((req, res) => {
+    let firstName = req.body.first
+    let lastName = req.body.last
+
+    res.json({
+        "name": `${firstName} ${lastName}`
+    })
 
 })
 

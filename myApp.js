@@ -8,6 +8,8 @@ let assetsAbsolutePath = __dirname + '/public'
 
 // allow access to our public assets
 app.use("/public", express.static(assetsAbsolutePath));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // logger middleware function
 app.use((req,res,next )=> {
@@ -18,9 +20,6 @@ app.use((req,res,next )=> {
     let requestIP = req.ip
     console.log(`${currentTimeString} ${requestMethod} ${requestPath} - ${requestIP}`)
     next()
-})
-app.use((req,res,next) => {
-    bodyParser.urlencoded({ extended: false}).json()
 })
 
 console.log("Hello World")

@@ -26,6 +26,19 @@ app.get('/',(req, res)=> {
     res.sendFile(indexAbsolutePath)
 })
 
+app.route('/name').get((req, res) => {
+
+    let firstName = req.query.first
+    let lastName = req.query.last
+
+    res.json({
+        "name": `${firstName} ${lastName}`
+    })
+
+}).post((req, res) => {
+
+})
+
 app.get('/:word/echo',(req,res)=> {
     const requestWord = req.params.word
     res.json({

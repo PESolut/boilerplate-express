@@ -26,6 +26,13 @@ app.get('/',(req, res)=> {
     res.sendFile(indexAbsolutePath)
 })
 
+app.get('/:word/echo',(req,res)=> {
+    const requestWord = req.params.word
+    res.json({
+        "echo":requestWord
+    })
+})
+
 app.get('/json',(req, res) => {
     let messageString = "Hello json"
     const messageStyle = process.env.MESSAGE_STYLE
